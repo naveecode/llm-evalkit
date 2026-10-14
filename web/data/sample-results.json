@@ -1,0 +1,936 @@
+{
+  "kind": "sample",
+  "disclaimer": "Sample output produced by evalkit against local fixture endpoints. These numbers are not a benchmark of any real model. Latency is the localhost round trip from the run that wrote this file. Token counts are the usage field returned by the fixture, not a tokenizer. Cost multiplies those counts by the illustrative rates stored with the run.",
+  "run": {
+    "id": "99eeb96a42e540ea8d9653ce1d8a30a4",
+    "taskName": "json_extract",
+    "taskVersion": "1",
+    "description": "Extract name, email, order id, and issue from a short support ticket. Predictions must be one JSON object.",
+    "createdAt": "2026-10-14T13:29:35.421930+00:00",
+    "label": "sample",
+    "metrics": [
+      "exact_match",
+      "json_schema",
+      "llm_judge",
+      "latency",
+      "cost"
+    ],
+    "pricing": {
+      "fixture-exact": {
+        "inputPerMillion": 0.15,
+        "outputPerMillion": 0.6,
+        "source": "Illustrative rate set to the OpenAI gpt-4o-mini standard list price (https://developers.openai.com/api/docs/pricing, 2026-10-14). Applied only to fixture usage counts.",
+        "asOf": "2026-10-14"
+      },
+      "fixture-mutate": {
+        "inputPerMillion": 0.15,
+        "outputPerMillion": 0.6,
+        "source": "Illustrative rate set to the OpenAI gpt-4o-mini standard list price (https://developers.openai.com/api/docs/pricing, 2026-10-14). Applied only to fixture usage counts.",
+        "asOf": "2026-10-14"
+      },
+      "fixture-prose": {
+        "inputPerMillion": 0.15,
+        "outputPerMillion": 0.6,
+        "source": "Illustrative rate set to the OpenAI gpt-4o-mini standard list price (https://developers.openai.com/api/docs/pricing, 2026-10-14). Applied only to fixture usage counts.",
+        "asOf": "2026-10-14"
+      }
+    },
+    "targets": [
+      {
+        "targetId": "fixture-exact",
+        "provider": "openai-compatible",
+        "model": "fixture-exact",
+        "baseUrl": "http://127.0.0.1:8765/v1",
+        "summary": {
+          "n": 8,
+          "errors": 0,
+          "exactMatch": {
+            "passes": 8,
+            "scored": 8,
+            "rate": 1.0
+          },
+          "jsonSchema": {
+            "passes": 8,
+            "scored": 8,
+            "rate": 1.0
+          },
+          "judgeMean": 1.0,
+          "judgeScored": 8,
+          "latencyMsMean": 11.59,
+          "latencyMsP50": 10.647,
+          "liveLatencyCount": 8,
+          "costUsdTotal": 0.0002061,
+          "costPer1kUsd": 0.0257625,
+          "costComplete": true,
+          "targetId": "fixture-exact",
+          "model": "fixture-exact",
+          "provider": "openai-compatible"
+        },
+        "samples": [
+          {
+            "sampleId": "damaged",
+            "input": "Customer Jane Doe (jane@example.com) says order #A-1042 arrived damaged.",
+            "expected": {
+              "name": "Jane Doe",
+              "email": "jane@example.com",
+              "order_id": "A-1042",
+              "issue": "arrived damaged"
+            },
+            "predictionText": "{\"name\": \"Jane Doe\", \"email\": \"jane@example.com\", \"order_id\": \"A-1042\", \"issue\": \"arrived damaged\"}",
+            "parsed": {
+              "name": "Jane Doe",
+              "email": "jane@example.com",
+              "order_id": "A-1042",
+              "issue": "arrived damaged"
+            },
+            "promptTokens": 65,
+            "completionTokens": 25,
+            "latencyMs": 21.849,
+            "costUsd": 2.475e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 1.0,
+              "jsonSchema": 1.0,
+              "judge": 1.0,
+              "judgeReason": "field overlap 1.000",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "missing",
+            "input": "Luis Ortega (luis.ortega@example.com) cannot find order #B-2201; the item is missing.",
+            "expected": {
+              "name": "Luis Ortega",
+              "email": "luis.ortega@example.com",
+              "order_id": "B-2201",
+              "issue": "missing item"
+            },
+            "predictionText": "{\"name\": \"Luis Ortega\", \"email\": \"luis.ortega@example.com\", \"order_id\": \"B-2201\", \"issue\": \"missing item\"}",
+            "parsed": {
+              "name": "Luis Ortega",
+              "email": "luis.ortega@example.com",
+              "order_id": "B-2201",
+              "issue": "missing item"
+            },
+            "promptTokens": 68,
+            "completionTokens": 27,
+            "latencyMs": 11.509,
+            "costUsd": 2.64e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 1.0,
+              "jsonSchema": 1.0,
+              "judge": 1.0,
+              "judgeReason": "field overlap 1.000",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "billing",
+            "input": "Priya Shah (priya.shah@example.com) was charged twice for order #C-118.",
+            "expected": {
+              "name": "Priya Shah",
+              "email": "priya.shah@example.com",
+              "order_id": "C-118",
+              "issue": "charged twice"
+            },
+            "predictionText": "{\"name\": \"Priya Shah\", \"email\": \"priya.shah@example.com\", \"order_id\": \"C-118\", \"issue\": \"charged twice\"}",
+            "parsed": {
+              "name": "Priya Shah",
+              "email": "priya.shah@example.com",
+              "order_id": "C-118",
+              "issue": "charged twice"
+            },
+            "promptTokens": 65,
+            "completionTokens": 26,
+            "latencyMs": 9.416,
+            "costUsd": 2.535e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 1.0,
+              "jsonSchema": 1.0,
+              "judge": 1.0,
+              "judgeReason": "field overlap 1.000",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "address",
+            "input": "Kenji Sato (kenji.sato@example.com) received order #D-9 at the wrong address.",
+            "expected": {
+              "name": "Kenji Sato",
+              "email": "kenji.sato@example.com",
+              "order_id": "D-9",
+              "issue": "wrong address"
+            },
+            "predictionText": "{\"name\": \"Kenji Sato\", \"email\": \"kenji.sato@example.com\", \"order_id\": \"D-9\", \"issue\": \"wrong address\"}",
+            "parsed": {
+              "name": "Kenji Sato",
+              "email": "kenji.sato@example.com",
+              "order_id": "D-9",
+              "issue": "wrong address"
+            },
+            "promptTokens": 66,
+            "completionTokens": 26,
+            "latencyMs": 14.126,
+            "costUsd": 2.55e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 1.0,
+              "jsonSchema": 1.0,
+              "judge": 1.0,
+              "judgeReason": "field overlap 1.000",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "late",
+            "input": "Amira Hassan (amira.hassan@example.com) is still waiting on order #E-440; delivery is late.",
+            "expected": {
+              "name": "Amira Hassan",
+              "email": "amira.hassan@example.com",
+              "order_id": "E-440",
+              "issue": "late delivery"
+            },
+            "predictionText": "{\"name\": \"Amira Hassan\", \"email\": \"amira.hassan@example.com\", \"order_id\": \"E-440\", \"issue\": \"late delivery\"}",
+            "parsed": {
+              "name": "Amira Hassan",
+              "email": "amira.hassan@example.com",
+              "order_id": "E-440",
+              "issue": "late delivery"
+            },
+            "promptTokens": 70,
+            "completionTokens": 27,
+            "latencyMs": 12.072,
+            "costUsd": 2.67e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 1.0,
+              "jsonSchema": 1.0,
+              "judge": 1.0,
+              "judgeReason": "field overlap 1.000",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "size",
+            "input": "Noah Williams (noah.williams@example.com) got the wrong size in order #F-17.",
+            "expected": {
+              "name": "Noah Williams",
+              "email": "noah.williams@example.com",
+              "order_id": "F-17",
+              "issue": "wrong size"
+            },
+            "predictionText": "{\"name\": \"Noah Williams\", \"email\": \"noah.williams@example.com\", \"order_id\": \"F-17\", \"issue\": \"wrong size\"}",
+            "parsed": {
+              "name": "Noah Williams",
+              "email": "noah.williams@example.com",
+              "order_id": "F-17",
+              "issue": "wrong size"
+            },
+            "promptTokens": 66,
+            "completionTokens": 27,
+            "latencyMs": 9.785,
+            "costUsd": 2.61e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 1.0,
+              "jsonSchema": 1.0,
+              "judge": 1.0,
+              "judgeReason": "field overlap 1.000",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "refund",
+            "input": "Sofia Rossi (sofia.rossi@example.com) has not received the refund for order #G-303.",
+            "expected": {
+              "name": "Sofia Rossi",
+              "email": "sofia.rossi@example.com",
+              "order_id": "G-303",
+              "issue": "refund not received"
+            },
+            "predictionText": "{\"name\": \"Sofia Rossi\", \"email\": \"sofia.rossi@example.com\", \"order_id\": \"G-303\", \"issue\": \"refund not received\"}",
+            "parsed": {
+              "name": "Sofia Rossi",
+              "email": "sofia.rossi@example.com",
+              "order_id": "G-303",
+              "issue": "refund not received"
+            },
+            "promptTokens": 68,
+            "completionTokens": 28,
+            "latencyMs": 7.21,
+            "costUsd": 2.7e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 1.0,
+              "jsonSchema": 1.0,
+              "judge": 1.0,
+              "judgeReason": "field overlap 1.000",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "cancel",
+            "input": "Jonah Kim (jonah.kim@example.com) asked to cancel order #H-88.",
+            "expected": {
+              "name": "Jonah Kim",
+              "email": "jonah.kim@example.com",
+              "order_id": "H-88",
+              "issue": "cancel order"
+            },
+            "predictionText": "{\"name\": \"Jonah Kim\", \"email\": \"jonah.kim@example.com\", \"order_id\": \"H-88\", \"issue\": \"cancel order\"}",
+            "parsed": {
+              "name": "Jonah Kim",
+              "email": "jonah.kim@example.com",
+              "order_id": "H-88",
+              "issue": "cancel order"
+            },
+            "promptTokens": 62,
+            "completionTokens": 25,
+            "latencyMs": 6.75,
+            "costUsd": 2.43e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 1.0,
+              "jsonSchema": 1.0,
+              "judge": 1.0,
+              "judgeReason": "field overlap 1.000",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": []
+            }
+          }
+        ]
+      },
+      {
+        "targetId": "fixture-mutate",
+        "provider": "openai-compatible",
+        "model": "fixture-mutate",
+        "baseUrl": "http://127.0.0.1:8765/v1",
+        "summary": {
+          "n": 8,
+          "errors": 0,
+          "exactMatch": {
+            "passes": 0,
+            "scored": 8,
+            "rate": 0.0
+          },
+          "jsonSchema": {
+            "passes": 4,
+            "scored": 8,
+            "rate": 0.5
+          },
+          "judgeMean": 0.75,
+          "judgeScored": 8,
+          "latencyMsMean": 8.223,
+          "latencyMsP50": 8.134,
+          "liveLatencyCount": 8,
+          "costUsdTotal": 0.0001845,
+          "costPer1kUsd": 0.0230625,
+          "costComplete": true,
+          "targetId": "fixture-mutate",
+          "model": "fixture-mutate",
+          "provider": "openai-compatible"
+        },
+        "samples": [
+          {
+            "sampleId": "damaged",
+            "input": "Customer Jane Doe (jane@example.com) says order #A-1042 arrived damaged.",
+            "expected": {
+              "name": "Jane Doe",
+              "email": "jane@example.com",
+              "order_id": "A-1042",
+              "issue": "arrived damaged"
+            },
+            "predictionText": "{\"name\": \"Jane Doe\", \"email\": \"jane@example.com\", \"order_id\": \"a-1042\", \"issue\": \"arrived damaged\"}",
+            "parsed": {
+              "name": "Jane Doe",
+              "email": "jane@example.com",
+              "order_id": "a-1042",
+              "issue": "arrived damaged"
+            },
+            "promptTokens": 65,
+            "completionTokens": 25,
+            "latencyMs": 8.052,
+            "costUsd": 2.475e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 1.0,
+              "judge": 0.75,
+              "judgeReason": "field overlap 0.750",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": [
+                "order_id"
+              ]
+            }
+          },
+          {
+            "sampleId": "missing",
+            "input": "Luis Ortega (luis.ortega@example.com) cannot find order #B-2201; the item is missing.",
+            "expected": {
+              "name": "Luis Ortega",
+              "email": "luis.ortega@example.com",
+              "order_id": "B-2201",
+              "issue": "missing item"
+            },
+            "predictionText": "{\"name\": \"Luis Ortega\", \"order_id\": \"B-2201\", \"issue\": \"missing item\"}",
+            "parsed": {
+              "name": "Luis Ortega",
+              "order_id": "B-2201",
+              "issue": "missing item"
+            },
+            "promptTokens": 68,
+            "completionTokens": 18,
+            "latencyMs": 8.91,
+            "costUsd": 2.1e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.75,
+              "judgeReason": "field overlap 0.750",
+              "judgeError": null,
+              "schemaErrors": [
+                "email: Field required"
+              ],
+              "mismatchedFields": [
+                "email"
+              ]
+            }
+          },
+          {
+            "sampleId": "billing",
+            "input": "Priya Shah (priya.shah@example.com) was charged twice for order #C-118.",
+            "expected": {
+              "name": "Priya Shah",
+              "email": "priya.shah@example.com",
+              "order_id": "C-118",
+              "issue": "charged twice"
+            },
+            "predictionText": "{\"name\": \"Priya Shah\", \"email\": \"priya.shah@example.com\", \"order_id\": \"c-118\", \"issue\": \"charged twice\"}",
+            "parsed": {
+              "name": "Priya Shah",
+              "email": "priya.shah@example.com",
+              "order_id": "c-118",
+              "issue": "charged twice"
+            },
+            "promptTokens": 65,
+            "completionTokens": 26,
+            "latencyMs": 9.637,
+            "costUsd": 2.535e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 1.0,
+              "judge": 0.75,
+              "judgeReason": "field overlap 0.750",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": [
+                "order_id"
+              ]
+            }
+          },
+          {
+            "sampleId": "address",
+            "input": "Kenji Sato (kenji.sato@example.com) received order #D-9 at the wrong address.",
+            "expected": {
+              "name": "Kenji Sato",
+              "email": "kenji.sato@example.com",
+              "order_id": "D-9",
+              "issue": "wrong address"
+            },
+            "predictionText": "{\"name\": \"Kenji Sato\", \"order_id\": \"D-9\", \"issue\": \"wrong address\"}",
+            "parsed": {
+              "name": "Kenji Sato",
+              "order_id": "D-9",
+              "issue": "wrong address"
+            },
+            "promptTokens": 66,
+            "completionTokens": 17,
+            "latencyMs": 9.205,
+            "costUsd": 2.01e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.75,
+              "judgeReason": "field overlap 0.750",
+              "judgeError": null,
+              "schemaErrors": [
+                "email: Field required"
+              ],
+              "mismatchedFields": [
+                "email"
+              ]
+            }
+          },
+          {
+            "sampleId": "late",
+            "input": "Amira Hassan (amira.hassan@example.com) is still waiting on order #E-440; delivery is late.",
+            "expected": {
+              "name": "Amira Hassan",
+              "email": "amira.hassan@example.com",
+              "order_id": "E-440",
+              "issue": "late delivery"
+            },
+            "predictionText": "{\"name\": \"Amira Hassan\", \"email\": \"amira.hassan@example.com\", \"order_id\": \"e-440\", \"issue\": \"late delivery\"}",
+            "parsed": {
+              "name": "Amira Hassan",
+              "email": "amira.hassan@example.com",
+              "order_id": "e-440",
+              "issue": "late delivery"
+            },
+            "promptTokens": 70,
+            "completionTokens": 27,
+            "latencyMs": 8.217,
+            "costUsd": 2.67e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 1.0,
+              "judge": 0.75,
+              "judgeReason": "field overlap 0.750",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": [
+                "order_id"
+              ]
+            }
+          },
+          {
+            "sampleId": "size",
+            "input": "Noah Williams (noah.williams@example.com) got the wrong size in order #F-17.",
+            "expected": {
+              "name": "Noah Williams",
+              "email": "noah.williams@example.com",
+              "order_id": "F-17",
+              "issue": "wrong size"
+            },
+            "predictionText": "{\"name\": \"Noah Williams\", \"order_id\": \"F-17\", \"issue\": \"wrong size\"}",
+            "parsed": {
+              "name": "Noah Williams",
+              "order_id": "F-17",
+              "issue": "wrong size"
+            },
+            "promptTokens": 66,
+            "completionTokens": 17,
+            "latencyMs": 7.751,
+            "costUsd": 2.01e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.75,
+              "judgeReason": "field overlap 0.750",
+              "judgeError": null,
+              "schemaErrors": [
+                "email: Field required"
+              ],
+              "mismatchedFields": [
+                "email"
+              ]
+            }
+          },
+          {
+            "sampleId": "refund",
+            "input": "Sofia Rossi (sofia.rossi@example.com) has not received the refund for order #G-303.",
+            "expected": {
+              "name": "Sofia Rossi",
+              "email": "sofia.rossi@example.com",
+              "order_id": "G-303",
+              "issue": "refund not received"
+            },
+            "predictionText": "{\"name\": \"Sofia Rossi\", \"email\": \"sofia.rossi@example.com\", \"order_id\": \"g-303\", \"issue\": \"refund not received\"}",
+            "parsed": {
+              "name": "Sofia Rossi",
+              "email": "sofia.rossi@example.com",
+              "order_id": "g-303",
+              "issue": "refund not received"
+            },
+            "promptTokens": 68,
+            "completionTokens": 28,
+            "latencyMs": 6.902,
+            "costUsd": 2.7e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 1.0,
+              "judge": 0.75,
+              "judgeReason": "field overlap 0.750",
+              "judgeError": null,
+              "schemaErrors": [],
+              "mismatchedFields": [
+                "order_id"
+              ]
+            }
+          },
+          {
+            "sampleId": "cancel",
+            "input": "Jonah Kim (jonah.kim@example.com) asked to cancel order #H-88.",
+            "expected": {
+              "name": "Jonah Kim",
+              "email": "jonah.kim@example.com",
+              "order_id": "H-88",
+              "issue": "cancel order"
+            },
+            "predictionText": "{\"name\": \"Jonah Kim\", \"order_id\": \"H-88\", \"issue\": \"cancel order\"}",
+            "parsed": {
+              "name": "Jonah Kim",
+              "order_id": "H-88",
+              "issue": "cancel order"
+            },
+            "promptTokens": 62,
+            "completionTokens": 17,
+            "latencyMs": 7.108,
+            "costUsd": 1.95e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.75,
+              "judgeReason": "field overlap 0.750",
+              "judgeError": null,
+              "schemaErrors": [
+                "email: Field required"
+              ],
+              "mismatchedFields": [
+                "email"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "targetId": "fixture-prose",
+        "provider": "openai-compatible",
+        "model": "fixture-prose",
+        "baseUrl": "http://127.0.0.1:8765/v1",
+        "summary": {
+          "n": 8,
+          "errors": 0,
+          "exactMatch": {
+            "passes": 0,
+            "scored": 8,
+            "rate": 0.0
+          },
+          "jsonSchema": {
+            "passes": 0,
+            "scored": 8,
+            "rate": 0.0
+          },
+          "judgeMean": 0.0,
+          "judgeScored": 8,
+          "latencyMsMean": 7.43,
+          "latencyMsP50": 7.394,
+          "liveLatencyCount": 8,
+          "costUsdTotal": 0.0001515,
+          "costPer1kUsd": 0.0189375,
+          "costComplete": true,
+          "targetId": "fixture-prose",
+          "model": "fixture-prose",
+          "provider": "openai-compatible"
+        },
+        "samples": [
+          {
+            "sampleId": "damaged",
+            "input": "Customer Jane Doe (jane@example.com) says order #A-1042 arrived damaged.",
+            "expected": {
+              "name": "Jane Doe",
+              "email": "jane@example.com",
+              "order_id": "A-1042",
+              "issue": "arrived damaged"
+            },
+            "predictionText": "I extracted a ticket but this fixture does not emit JSON.",
+            "parsed": null,
+            "promptTokens": 65,
+            "completionTokens": 15,
+            "latencyMs": 7.736,
+            "costUsd": 1.875e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.0,
+              "judgeReason": "field overlap 0.000",
+              "judgeError": null,
+              "schemaErrors": [
+                "output is not valid JSON"
+              ],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "missing",
+            "input": "Luis Ortega (luis.ortega@example.com) cannot find order #B-2201; the item is missing.",
+            "expected": {
+              "name": "Luis Ortega",
+              "email": "luis.ortega@example.com",
+              "order_id": "B-2201",
+              "issue": "missing item"
+            },
+            "predictionText": "I extracted a ticket but this fixture does not emit JSON.",
+            "parsed": null,
+            "promptTokens": 68,
+            "completionTokens": 15,
+            "latencyMs": 8.347,
+            "costUsd": 1.92e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.0,
+              "judgeReason": "field overlap 0.000",
+              "judgeError": null,
+              "schemaErrors": [
+                "output is not valid JSON"
+              ],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "billing",
+            "input": "Priya Shah (priya.shah@example.com) was charged twice for order #C-118.",
+            "expected": {
+              "name": "Priya Shah",
+              "email": "priya.shah@example.com",
+              "order_id": "C-118",
+              "issue": "charged twice"
+            },
+            "predictionText": "I extracted a ticket but this fixture does not emit JSON.",
+            "parsed": null,
+            "promptTokens": 65,
+            "completionTokens": 15,
+            "latencyMs": 7.895,
+            "costUsd": 1.875e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.0,
+              "judgeReason": "field overlap 0.000",
+              "judgeError": null,
+              "schemaErrors": [
+                "output is not valid JSON"
+              ],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "address",
+            "input": "Kenji Sato (kenji.sato@example.com) received order #D-9 at the wrong address.",
+            "expected": {
+              "name": "Kenji Sato",
+              "email": "kenji.sato@example.com",
+              "order_id": "D-9",
+              "issue": "wrong address"
+            },
+            "predictionText": "I extracted a ticket but this fixture does not emit JSON.",
+            "parsed": null,
+            "promptTokens": 66,
+            "completionTokens": 15,
+            "latencyMs": 6.905,
+            "costUsd": 1.89e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.0,
+              "judgeReason": "field overlap 0.000",
+              "judgeError": null,
+              "schemaErrors": [
+                "output is not valid JSON"
+              ],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "late",
+            "input": "Amira Hassan (amira.hassan@example.com) is still waiting on order #E-440; delivery is late.",
+            "expected": {
+              "name": "Amira Hassan",
+              "email": "amira.hassan@example.com",
+              "order_id": "E-440",
+              "issue": "late delivery"
+            },
+            "predictionText": "I extracted a ticket but this fixture does not emit JSON.",
+            "parsed": null,
+            "promptTokens": 70,
+            "completionTokens": 15,
+            "latencyMs": 7.052,
+            "costUsd": 1.95e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.0,
+              "judgeReason": "field overlap 0.000",
+              "judgeError": null,
+              "schemaErrors": [
+                "output is not valid JSON"
+              ],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "size",
+            "input": "Noah Williams (noah.williams@example.com) got the wrong size in order #F-17.",
+            "expected": {
+              "name": "Noah Williams",
+              "email": "noah.williams@example.com",
+              "order_id": "F-17",
+              "issue": "wrong size"
+            },
+            "predictionText": "I extracted a ticket but this fixture does not emit JSON.",
+            "parsed": null,
+            "promptTokens": 66,
+            "completionTokens": 15,
+            "latencyMs": 6.851,
+            "costUsd": 1.89e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.0,
+              "judgeReason": "field overlap 0.000",
+              "judgeError": null,
+              "schemaErrors": [
+                "output is not valid JSON"
+              ],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "refund",
+            "input": "Sofia Rossi (sofia.rossi@example.com) has not received the refund for order #G-303.",
+            "expected": {
+              "name": "Sofia Rossi",
+              "email": "sofia.rossi@example.com",
+              "order_id": "G-303",
+              "issue": "refund not received"
+            },
+            "predictionText": "I extracted a ticket but this fixture does not emit JSON.",
+            "parsed": null,
+            "promptTokens": 68,
+            "completionTokens": 15,
+            "latencyMs": 8.451,
+            "costUsd": 1.92e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.0,
+              "judgeReason": "field overlap 0.000",
+              "judgeError": null,
+              "schemaErrors": [
+                "output is not valid JSON"
+              ],
+              "mismatchedFields": []
+            }
+          },
+          {
+            "sampleId": "cancel",
+            "input": "Jonah Kim (jonah.kim@example.com) asked to cancel order #H-88.",
+            "expected": {
+              "name": "Jonah Kim",
+              "email": "jonah.kim@example.com",
+              "order_id": "H-88",
+              "issue": "cancel order"
+            },
+            "predictionText": "I extracted a ticket but this fixture does not emit JSON.",
+            "parsed": null,
+            "promptTokens": 62,
+            "completionTokens": 15,
+            "latencyMs": 6.2,
+            "costUsd": 1.83e-05,
+            "cached": false,
+            "attempts": 1,
+            "error": null,
+            "metrics": {
+              "exactMatch": 0.0,
+              "jsonSchema": 0.0,
+              "judge": 0.0,
+              "judgeReason": "field overlap 0.000",
+              "judgeError": null,
+              "schemaErrors": [
+                "output is not valid JSON"
+              ],
+              "mismatchedFields": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "generator": "scripts/export_sample_results.py",
+  "fixtures": {
+    "fixture-exact": "Returns the reference JSON object for the ticket.",
+    "fixture-mutate": "Even positions in dataset order (0, 2, 4, ...) lowercase order_id. Odd positions omit email. Every other field is copied from the reference.",
+    "fixture-prose": "Returns one sentence and no JSON object.",
+    "fixture-judge": "Returns the fraction of reference fields whose values are unchanged in the parsed prediction. A non-JSON prediction scores 0. This is not an LLM."
+  },
+  "pricingNote": "Each fixture price is an illustrative rate equal to the OpenAI gpt-4o-mini standard list price observed at https://developers.openai.com/api/docs/pricing on 2026-10-14 ($0.15 / 1M input, $0.60 / 1M output). It is applied to token counts the fixture itself put in the usage field (about 4 characters per token). It is not a bill from any provider."
+}
