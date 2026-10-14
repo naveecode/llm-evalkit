@@ -1,5 +1,7 @@
 # evalkit
 
+**Live demo (static, GitHub Pages):** https://naveecode.github.io/llm-evalkit/
+
 Evaluate chat models on tasks you define, then compare quality, latency, and cost. One runner talks to any server that implements the OpenAI chat completions API: OpenAI, Groq, Ollama, vLLM, or another compatible endpoint.
 
 The dashboard in this repo is **sample output**. It was produced by running the harness against local fixture endpoints. It is not a benchmark of any real model.
