@@ -1,3 +1,16 @@
 __pycache__/
 .venv/
 mlruns/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.mypy_cache/
+evalkit.sqlite
+evalkit.sqlite-*
+.evalkit/
+web/node_modules/
+web/.next/
+web/out/
+web/tsconfig.tsbuildinfo
+.next/
+dist/

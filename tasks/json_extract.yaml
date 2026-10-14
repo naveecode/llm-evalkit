@@ -1,0 +1,125 @@
+# Extract a customer, email, order id, and issue from a short support ticket.
+#
+#   export OPENAI_API_KEY=...
+#   evalkit run tasks/json_extract.yaml
+#
+# Point the same file at another OpenAI-compatible server:
+#   evalkit run tasks/json_extract.yaml \
+#     --base-url http://127.0.0.1:11434/v1 --model llama3.1 --api-key ollama
+#
+# provider groq uses https://api.groq.com/openai/v1 (set api_key_env: GROQ_API_KEY).
+# provider vllm uses http://127.0.0.1:8000/v1.
+# Prices for models that are not in the built-in catalog stay blank unless you
+# add a pricing: block. Do not copy a known model's price onto a different id.
+
+name: json_extract
+description: >
+  Extract name, email, order id, and issue from a short support ticket.
+  Predictions must be one JSON object.
+version: "1"
+
+prompt:
+  system: |
+    You extract structured fields from a support ticket.
+    Reply with a single JSON object and no other text.
+    Keys: name (string), email (string), order_id (string), issue (string).
+  user: |
+    Ticket:
+    {{ input }}
+
+output:
+  format: json
+  schema:
+    type: object
+    additionalProperties: false
+    required: [name, email, order_id, issue]
+    properties:
+      name: {type: string}
+      email: {type: string}
+      order_id: {type: string}
+      issue: {type: string}
+
+metrics:
+  - exact_match
+  - json_schema
+  - llm_judge
+  - latency
+  - cost
+
+judge:
+  rubric: |
+    Compare the prediction to the expected JSON object.
+    Score the fraction of expected fields whose values match exactly.
+    Use 0 when the prediction is not a JSON object.
+    The score must be between 0 and 1.
+  model: gpt-4o-mini
+  api_key_env: OPENAI_API_KEY
+  temperature: 0
+  max_tokens: 200
+
+targets:
+  - id: gpt-4o-mini
+    provider: openai
+    model: gpt-4o-mini
+    api_key_env: OPENAI_API_KEY
+    temperature: 0
+    max_tokens: 200
+
+dataset:
+  samples:
+    - id: damaged
+      input: "Customer Jane Doe (jane@example.com) says order #A-1042 arrived damaged."
+      expected:
+        name: Jane Doe
+        email: jane@example.com
+        order_id: A-1042
+        issue: arrived damaged
+    - id: missing
+      input: "Luis Ortega (luis.ortega@example.com) cannot find order #B-2201; the item is missing."
+      expected:
+        name: Luis Ortega
+        email: luis.ortega@example.com
+        order_id: B-2201
+        issue: missing item
+    - id: billing
+      input: "Priya Shah (priya.shah@example.com) was charged twice for order #C-118."
+      expected:
+        name: Priya Shah
+        email: priya.shah@example.com
+        order_id: C-118
+        issue: charged twice
+    - id: address
+      input: "Kenji Sato (kenji.sato@example.com) received order #D-9 at the wrong address."
+      expected:
+        name: Kenji Sato
+        email: kenji.sato@example.com
+        order_id: D-9
+        issue: wrong address
+    - id: late
+      input: "Amira Hassan (amira.hassan@example.com) is still waiting on order #E-440; delivery is late."
+      expected:
+        name: Amira Hassan
+        email: amira.hassan@example.com
+        order_id: E-440
+        issue: late delivery
+    - id: size
+      input: "Noah Williams (noah.williams@example.com) got the wrong size in order #F-17."
+      expected:
+        name: Noah Williams
+        email: noah.williams@example.com
+        order_id: F-17
+        issue: wrong size
+    - id: refund
+      input: "Sofia Rossi (sofia.rossi@example.com) has not received the refund for order #G-303."
+      expected:
+        name: Sofia Rossi
+        email: sofia.rossi@example.com
+        order_id: G-303
+        issue: refund not received
+    - id: cancel
+      input: "Jonah Kim (jonah.kim@example.com) asked to cancel order #H-88."
+      expected:
+        name: Jonah Kim
+        email: jonah.kim@example.com
+        order_id: H-88
+        issue: cancel order
