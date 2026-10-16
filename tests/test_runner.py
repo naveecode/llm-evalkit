@@ -144,3 +144,14 @@ def test_shipped_task_file_loads():
     assert task.targets[0].provider == "openai"
     assert task.output.json_schema is not None
     assert "name" in task.output.json_schema["properties"]
+
+
+def test_shipped_classification_task_loads():
+    task = load_task(__import__("pathlib").Path("tasks/classification.yaml"))
+    assert task.name == "classification"
+    assert len(task.dataset.samples) == 8
+    labels = {sample.expected["label"] for sample in task.dataset.samples}
+    assert labels == {"billing", "shipping", "product", "account"}
+    schema = task.output.json_schema
+    assert schema is not None
+    assert schema["properties"]["label"]["enum"] == ["billing", "shipping", "product", "account"]

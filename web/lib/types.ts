@@ -55,6 +55,78 @@ export type TargetResult = {
   baseUrl: string;
   summary: Summary;
   samples: SampleRow[];
+  quantization?: string;
+  parameterSize?: string;
+  family?: string;
+  digest?: string;
+  contextLength?: number;
+};
+
+export type EvalRun = {
+  id: string;
+  taskName: string;
+  taskVersion: string;
+  description: string;
+  createdAt: string;
+  label: string | null;
+  metrics: string[];
+  pricing: Record<
+    string,
+    {
+      inputPerMillion: number;
+      outputPerMillion: number;
+      source: string | null;
+      asOf: string | null;
+    }
+  >;
+  targets: TargetResult[];
+};
+
+export type Hardware = {
+  cpuModel: string;
+  cpuFamily: number;
+  cpuModelId: number;
+  cpuStepping: number;
+  logicalCpus: number;
+  memoryTotalBytes: number;
+  memoryAvailableBytes: number;
+  platform: string;
+  kernel: string;
+  backend: string;
+  backendVersion: string;
+  runner: string;
+  ggmlLibraries: string[];
+  acceleratorLibraries: string[];
+  collectedAt: string;
+};
+
+export type MeasuredModel = {
+  model: string;
+  format: string | null;
+  family: string | null;
+  parameterSize: string;
+  parameterCount: number | null;
+  quantization: string;
+  digest: string;
+  sizeBytes: number;
+  contextLength: number;
+  ollamaDetails: {
+    quantization_level?: string;
+    parameter_size?: string;
+    family?: string;
+    format?: string;
+  };
+};
+
+export type MeasuredFile = {
+  kind: string;
+  disclaimer: string;
+  generator: string;
+  judgeRan: boolean;
+  procedure: string;
+  hardware: Hardware;
+  models: MeasuredModel[];
+  runs: EvalRun[];
 };
 
 export type SampleFile = {
@@ -63,23 +135,5 @@ export type SampleFile = {
   generator?: string;
   fixtures?: Record<string, string>;
   pricingNote?: string;
-  run: {
-    id: string;
-    taskName: string;
-    taskVersion: string;
-    description: string;
-    createdAt: string;
-    label: string | null;
-    metrics: string[];
-    pricing: Record<
-      string,
-      {
-        inputPerMillion: number;
-        outputPerMillion: number;
-        source: string | null;
-        asOf: string | null;
-      }
-    >;
-    targets: TargetResult[];
-  };
+  run: EvalRun;
 };

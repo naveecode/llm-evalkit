@@ -11,6 +11,9 @@ export function Header() {
           <Link href="/" className="hover:text-paper">
             Leaderboard
           </Link>
+          <Link href="/sample" className="hover:text-paper">
+            Sample
+          </Link>
           <a
             href="https://github.com/naveecode/llm-evalkit"
             className="hover:text-paper"

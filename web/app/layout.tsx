@@ -18,9 +18,9 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "evalkit sample leaderboard",
+  title: "evalkit",
   description:
-    "Sample evaluation output from fixture endpoints. Not a benchmark of any real model.",
+    "Measured CPU leaderboard for small open models, with fixture output kept on a separate sample page.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -27,6 +27,10 @@ export function tokens(prompt: number | null, completion: number | null): string
   return `${prompt ?? "—"} in / ${completion ?? "—"} out`;
 }
 
+export function gibibytes(bytes: number): string {
+  return `${(bytes / 1024 / 1024 / 1024).toFixed(2)} GiB`;
+}
+
 export function stamp(iso: string): string {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return iso;
