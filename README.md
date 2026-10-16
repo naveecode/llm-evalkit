@@ -1,10 +1,88 @@
 # evalkit
 
-**Live demo (static, GitHub Pages):** https://naveecode.github.io/llm-evalkit/
+**Live leaderboard:** https://naveecode.github.io/llm-evalkit/
 
 Evaluate chat models on tasks you define, then compare quality, latency, and cost. One runner talks to any server that implements the OpenAI chat completions API: OpenAI, Groq, Ollama, vLLM, or another compatible endpoint.
 
-The dashboard in this repo is **sample output**. It was produced by running the harness against local fixture endpoints. It is not a benchmark of any real model.
+The live site is a measured run of three small Ollama models on CPU. Fixture output stays in `web/data/sample-results.json` and at `/sample`, labeled sample on that page.
+
+## Measured CPU run
+
+Live leaderboard: https://naveecode.github.io/llm-evalkit/
+
+`web/data/measured-results.json` was written by `scripts/export_measured_results.py` on 2026-10-16. The numbers below are the summaries in that file. `tests/test_measured_results.py` recomputes exact match, schema validity, and cost from the stored predictions.
+
+### Machine
+
+- CPU: `Intel(R) Xeon(R) Processor`, family 6, model 207, stepping 2, 4 logical CPUs (`/proc/cpuinfo`)
+- Memory: 15.63 GiB (`MemTotal` 16780574720 bytes). 3.45 GiB was available when the file was written.
+- Server: Ollama 0.40.5, runner `llamacpp`, context length 4096 from `/api/ps`
+- Library mapped into `llama-server`: `libggml-cpu-sapphirerapids.so`, plus `libggml-base.so.0.27.0`, `libggml.so.0.27.0`, `libllama.so.0.7.0`, `libllama-common.so.0.7.0`, and `libllama-server-impl.so`
+- `/api/ps` reported a non-zero `size_vram` for these processes. The mapped libraries above are the CPU build. No CUDA, HIP, Vulkan, or Metal library was mapped.
+
+### Models
+
+Quantization and parameter size are `details.quantization_level` and `details.parameter_size` from `POST /api/show` for the tag that was requested.
+
+| Tag | Quantization | Parameters | Family | Digest |
+| --- | --- | --- | --- | --- |
+| `qwen2.5:0.5b` | Q4_K_M | 494.03M | qwen2 | `a8b0c5157701` |
+| `smollm2:360m` | F16 | 361.82M | llama | `297281b699fc` |
+| `llama3.2:1b` | Q8_0 | 1.2B | llama | `baf6a787fdff` |
+
+The SmolLM2 tag on this Ollama build is F16. The Llama 3.2 1B tag is Q8_0. The Qwen2.5 0.5B tag is Q4_K_M.
+
+### Scores
+
+Both task files were run in full, so n=8 for every row. Temperature was 0. Requests ran one at a time, all samples of one model before the next. Each model was stopped before the task, so the first sample's wall time can include weight load. In this file the first sample is the slowest row for every model. The judge was not called. Cost uses a price of $0 per million tokens, source `local Ollama; no provider bill`, times the token counts Ollama returned. Every target finished with 0 request errors.
+
+`json_extract`, 2026-10-16 05:09:30 UTC:
+
+| Model | Quant | Exact | Schema | p50 |
+| --- | --- | --- | --- | --- |
+| `qwen2.5:0.5b` | Q4_K_M | 1/8 | 8/8 | 716.447 ms |
+| `smollm2:360m` | F16 | 0/8 | 7/8 | 1149.926 ms |
+| `llama3.2:1b` | Q8_0 | 3/8 | 8/8 | 1122.961 ms |
+
+On the schema-valid misses, the only mismatched field is `issue`. Name, email, and order id matched the reference. Qwen2.5-0.5B's exact match is `cancel`. Llama-3.2-1B's exact matches are `billing`, `size`, and `cancel`. SmolLM2-360M failed the schema on `damaged` because the JSON object was cut off.
+
+`classification`, 2026-10-16 05:09:59 UTC:
+
+| Model | Quant | Exact | Schema | p50 |
+| --- | --- | --- | --- | --- |
+| `qwen2.5:0.5b` | Q4_K_M | 4/8 | 8/8 | 170.027 ms |
+| `smollm2:360m` | F16 | 0/8 | 0/8 | 677.082 ms |
+| `llama3.2:1b` | Q8_0 | 2/8 | 4/8 | 432.381 ms |
+
+Qwen2.5-0.5B returned one allowed label on every ticket. The matches are both product tickets and both account tickets. Both billing tickets were labeled `account`. The shipping tickets were labeled `product` and `account`.
+
+Llama-3.2-1B matched both billing tickets. `not-delivered` and `close-account` were schema-valid and labeled `billing`. On `late-ship`, `broken-unit`, `wrong-color`, and `cannot-login` the label string was a copy of the ticket, which fails the enum.
+
+SmolLM2-360M added extra keys on seven tickets (`status`, `message`, and on `late-ship` further status fields), which `additionalProperties: false` rejects. `wrong-color` was prose. Every parsed object that included `label` set it to `billing`.
+
+The first-sample latencies, which include model load, were 1852.707 ms, 2669.229 ms, and 3733.178 ms on `json_extract`, and 1324.719 ms, 1903.94 ms, and 2786.443 ms on `classification`, in model order Qwen, SmolLM2, Llama.
+
+n=8 is the whole file. These figures describe this machine, these Ollama tags, and these 16 prompts.
+
+### Reproduce
+
+```bash
+ollama serve   # Ollama 0.40.5 on 127.0.0.1:11434 in this run
+ollama pull qwen2.5:0.5b
+ollama pull smollm2:360m
+ollama pull llama3.2:1b
+pip install -e .
+python scripts/export_measured_results.py \
+  --base-url http://127.0.0.1:11434/v1 \
+  --api-key ollama \
+  --model qwen2.5:0.5b \
+  --model smollm2:360m \
+  --model llama3.2:1b
+```
+
+That rewrites `web/data/measured-results.json`. A later run will not reproduce these latencies. Scores can also move if a tag's weights or quantization change.
+
+Live leaderboard: https://naveecode.github.io/llm-evalkit/
 
 ## Run a task
 
@@ -49,7 +127,7 @@ evalkit serve
 
 ## Task file
 
-`tasks/json_extract.yaml` is the worked example: eight synthetic support tickets, a JSON schema, and five metrics. A target needs a provider, a model name, and usually `api_key_env`. Providers fill in a default base URL when you omit one.
+`tasks/json_extract.yaml` extracts name, email, order id, and issue from eight synthetic support tickets. `tasks/classification.yaml` labels eight short tickets as billing, shipping, product, or account. Both files ship a JSON schema and the same five metrics. A target needs a provider, a model name, and usually `api_key_env`. Providers fill in a default base URL when you omit one.
 
 | provider | default base URL |
 | --- | --- |
@@ -83,7 +161,10 @@ A model with no task price and no catalog entry is left blank. The harness does 
 
 ## Dashboard
 
-The Next.js app reads the committed file `web/data/sample-results.json`. It does not call a model at build time, so it deploys on Vercel with no API key.
+The Next.js app reads two committed files and does not call a model at build time.
+
+- `web/data/measured-results.json` is the leaderboard at `/`. Each row shows the model tag, the Ollama quantization, n, and the run date. The hardware strip shows the CPU, memory, Ollama version, and the mapped ggml library.
+- `web/data/sample-results.json` is the fixture page at `/sample`. It stays labeled sample.
 
 On Vercel, set the project root to `web`. Framework preset: Next.js.
 
@@ -123,8 +204,8 @@ Python tests mock HTTP with `respx`. `tests/test_cli.py` starts a local server a
 
 ```
 evalkit/        runner, metrics, SQLite, FastAPI, CLI
-tasks/          YAML task definitions
-scripts/        regenerate the sample dashboard file
+tasks/          json_extract and classification
+scripts/        regenerate the sample file and the measured results
 web/            Next.js 14 dashboard
 notebooks/      QLoRA Colab recipe
 tests/
@@ -134,4 +215,4 @@ API keys are read from the environment and are not written to SQLite.
 
 ## Limits
 
-Chat completions only. Exact match is strict on purpose; the judge is the fuzzy metric, and it is only as good as the model you point it at. Cost ignores prompt-cache discounts. SQLite is the store: one machine, one writer. The published dashboard is fixture output, labeled sample on every page.
+Chat completions only. Exact match is strict on purpose; the judge is the fuzzy metric, and it is only as good as the model you point it at. The published CPU run left the judge unscored. Cost ignores prompt-cache discounts. SQLite is the store: one machine, one writer. The leaderboard is the measured file. Fixture output is only on `/sample`.

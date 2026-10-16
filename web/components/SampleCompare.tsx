@@ -6,7 +6,7 @@ import { DiffBlock } from "@/components/DiffBlock";
 import { latency, tokens, usd } from "@/lib/format";
 import type { TargetResult } from "@/lib/types";
 
-export function SampleCompare({ targets }: { targets: TargetResult[] }) {
+export function SampleCompare({ targets, note }: { targets: TargetResult[]; note: string }) {
   const sampleIds = targets[0]?.samples.map((sample) => sample.sampleId) ?? [];
   const [sampleId, setSampleId] = useState(sampleIds[0] ?? "");
   const selected = targets.map((target) => ({
@@ -20,9 +20,7 @@ export function SampleCompare({ targets }: { targets: TargetResult[] }) {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2 className="text-lg font-medium">Per-sample diff</h2>
-          <p className="mt-1 max-w-2xl text-sm text-muted">
-            Expected JSON against each fixture. Removed lines are the reference. Added lines are the prediction.
-          </p>
+          <p className="mt-1 max-w-2xl text-sm text-muted">{note}</p>
         </div>
         <label className="grid gap-1 text-xs uppercase tracking-wide text-muted">
           Ticket

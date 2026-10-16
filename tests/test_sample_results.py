@@ -67,4 +67,7 @@ def test_sample_file_matches_the_metrics():
 def test_dashboard_reads_the_sample_file():
     source = RESULTS_SOURCE.read_text(encoding="utf-8")
     assert "sample-results.json" in source
-    assert "kind" in source
+    assert 'kind !== "sample"' in source
+    sample_page = (ROOT / "web" / "app" / "sample" / "page.tsx").read_text(encoding="utf-8")
+    assert "sampleResults" in sample_page
+    assert "Fixture output" in sample_page

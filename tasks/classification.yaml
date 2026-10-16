@@ -1,0 +1,95 @@
+# Classify a short support ticket into one of four labels.
+#
+#   export OPENAI_API_KEY=...
+#   evalkit run tasks/classification.yaml
+#
+# Local server:
+#   evalkit run tasks/classification.yaml \
+#     --base-url http://127.0.0.1:11434/v1 --model qwen2.5:0.5b --api-key ollama --skip-judge
+
+name: classification
+description: >
+  Classify a short support ticket as billing, shipping, product, or account.
+  Predictions must be one JSON object with a label field.
+version: "1"
+
+prompt:
+  system: |
+    You classify a support ticket.
+    Reply with a single JSON object and no other text.
+    Key: label (string).
+    Allowed labels: billing, shipping, product, account.
+  user: |
+    Ticket:
+    {{ input }}
+
+output:
+  format: json
+  schema:
+    type: object
+    additionalProperties: false
+    required: [label]
+    properties:
+      label:
+        type: string
+        enum: [billing, shipping, product, account]
+
+metrics:
+  - exact_match
+  - json_schema
+  - llm_judge
+  - latency
+  - cost
+
+judge:
+  rubric: |
+    Score 1 when the predicted label matches the expected label.
+    Score 0 otherwise, including when the prediction is not a JSON object.
+    The score must be between 0 and 1.
+  model: gpt-4o-mini
+  api_key_env: OPENAI_API_KEY
+  temperature: 0
+  max_tokens: 200
+
+targets:
+  - id: gpt-4o-mini
+    provider: openai
+    model: gpt-4o-mini
+    api_key_env: OPENAI_API_KEY
+    temperature: 0
+    max_tokens: 80
+
+dataset:
+  samples:
+    - id: double-charge
+      input: "I was charged twice on my card for the same order."
+      expected:
+        label: billing
+    - id: refund-status
+      input: "Where is the refund you said was sent last week?"
+      expected:
+        label: billing
+    - id: not-delivered
+      input: "The tracking page says delivered but the package is not here."
+      expected:
+        label: shipping
+    - id: late-ship
+      input: "My order still has not shipped and the estimate was yesterday."
+      expected:
+        label: shipping
+    - id: broken-unit
+      input: "The blender I received does not turn on."
+      expected:
+        label: product
+    - id: wrong-color
+      input: "You sent a blue jacket and I ordered the black one."
+      expected:
+        label: product
+    - id: cannot-login
+      input: "I cannot sign in after the password reset email."
+      expected:
+        label: account
+    - id: close-account
+      input: "Please close my account and delete the profile."
+      expected:
+        label: account

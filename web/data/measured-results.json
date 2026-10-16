@@ -1,0 +1,1985 @@
+{
+  "kind": "measured",
+  "disclaimer": "Measured by evalkit against local Ollama on this machine. Each score is the harness metric on every row of the task file. The judge was not called: the task files point it at gpt-4o-mini, and this run did not use a paid API or a substitute grader. Cost is zero because these calls had no provider bill. Quantization and parameter size come from the Ollama show API for the tag that was requested. The CPU line comes from /proc. The inference library is the ggml shared object mapped into the llama-server process that served the calls.",
+  "generator": "scripts/export_measured_results.py",
+  "judgeRan": false,
+  "procedure": "Each model was stopped before the task. Samples ran one at a time, all rows of one model before the next model. The first sample of a model can include weight load in its latency. A fresh response cache was used, so none of these rows are cache hits.",
+  "hardware": {
+    "cpuModel": "Intel(R) Xeon(R) Processor",
+    "cpuFamily": 6,
+    "cpuModelId": 207,
+    "cpuStepping": 2,
+    "logicalCpus": 4,
+    "memoryTotalBytes": 16780574720,
+    "memoryAvailableBytes": 3701383168,
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "kernel": "Linux 6.12.94+ x86_64",
+    "backend": "ollama",
+    "backendVersion": "0.40.5",
+    "runner": "llamacpp",
+    "ggmlLibraries": [
+      "libggml-base.so.0.27.0",
+      "libggml-cpu-sapphirerapids.so",
+      "libggml.so.0.27.0",
+      "libllama-common.so.0.7.0",
+      "libllama-server-impl.so",
+      "libllama.so.0.7.0"
+    ],
+    "acceleratorLibraries": [],
+    "collectedAt": "2026-10-16T05:09:30.501289+00:00"
+  },
+  "models": [
+    {
+      "model": "qwen2.5:0.5b",
+      "format": "gguf",
+      "family": "qwen2",
+      "parameterSize": "494.03M",
+      "parameterCount": 494032768,
+      "quantization": "Q4_K_M",
+      "ollamaDetails": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen2",
+        "families": [
+          "qwen2"
+        ],
+        "parameter_size": "494.03M",
+        "quantization_level": "Q4_K_M"
+      },
+      "digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+      "sizeBytes": 397821319,
+      "contextLength": 4096,
+      "ps": {
+        "size": 648722512,
+        "sizeVram": 236432916,
+        "contextLength": 4096,
+        "runner": "llamacpp"
+      }
+    },
+    {
+      "model": "smollm2:360m",
+      "format": "gguf",
+      "family": "llama",
+      "parameterSize": "361.82M",
+      "parameterCount": 361821120,
+      "quantization": "F16",
+      "ollamaDetails": {
+        "parent_model": "/Users/administrator/.ollama/models/blobs/sha256-7d23be4097d67c5c43c3df62ebc19609a25f483c7d0b77d3989e1d94e36ccab6",
+        "format": "gguf",
+        "family": "llama",
+        "families": [
+          "llama"
+        ],
+        "parameter_size": "361.82M",
+        "quantization_level": "F16"
+      },
+      "digest": "297281b699fc51376006233ca400cd664c4f7b80ed88a47ef084f1e4b089803b",
+      "sizeBytes": 725566512,
+      "contextLength": 4096,
+      "ps": {
+        "size": 1015881399,
+        "sizeVram": 723517440,
+        "contextLength": 4096,
+        "runner": "llamacpp"
+      }
+    },
+    {
+      "model": "llama3.2:1b",
+      "format": "gguf",
+      "family": "llama",
+      "parameterSize": "1.2B",
+      "parameterCount": 1235814432,
+      "quantization": "Q8_0",
+      "ollamaDetails": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "llama",
+        "families": [
+          "llama"
+        ],
+        "parameter_size": "1.2B",
+        "quantization_level": "Q8_0"
+      },
+      "digest": "baf6a787fdffd633537aa2eb51cfd54cb93ff08e28040095462bb63daf552878",
+      "sizeBytes": 1321098329,
+      "contextLength": 4096,
+      "ps": {
+        "size": 1957051759,
+        "sizeVram": 1467450654,
+        "contextLength": 4096,
+        "runner": "llamacpp"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "8892d52811974d4b9e0a16513745eaca",
+      "taskName": "json_extract",
+      "taskVersion": "1",
+      "description": "Extract name, email, order id, and issue from a short support ticket. Predictions must be one JSON object.",
+      "createdAt": "2026-10-16T05:09:30.774202+00:00",
+      "label": "measured",
+      "metrics": [
+        "exact_match",
+        "json_schema",
+        "llm_judge",
+        "latency",
+        "cost"
+      ],
+      "pricing": {
+        "qwen2.5:0.5b": {
+          "inputPerMillion": 0.0,
+          "outputPerMillion": 0.0,
+          "source": "local Ollama; no provider bill",
+          "asOf": "2026-10-16"
+        },
+        "smollm2:360m": {
+          "inputPerMillion": 0.0,
+          "outputPerMillion": 0.0,
+          "source": "local Ollama; no provider bill",
+          "asOf": "2026-10-16"
+        },
+        "llama3.2:1b": {
+          "inputPerMillion": 0.0,
+          "outputPerMillion": 0.0,
+          "source": "local Ollama; no provider bill",
+          "asOf": "2026-10-16"
+        }
+      },
+      "targets": [
+        {
+          "targetId": "qwen2.5-0.5b",
+          "provider": "ollama",
+          "model": "qwen2.5:0.5b",
+          "baseUrl": "http://127.0.0.1:11434/v1",
+          "summary": {
+            "n": 8,
+            "errors": 0,
+            "exactMatch": {
+              "passes": 1,
+              "scored": 8,
+              "rate": 0.125
+            },
+            "jsonSchema": {
+              "passes": 8,
+              "scored": 8,
+              "rate": 1.0
+            },
+            "judgeMean": null,
+            "judgeScored": 0,
+            "latencyMsMean": 839.74,
+            "latencyMsP50": 716.447,
+            "liveLatencyCount": 8,
+            "costUsdTotal": 0.0,
+            "costPer1kUsd": 0.0,
+            "costComplete": true,
+            "targetId": "qwen2.5-0.5b",
+            "model": "qwen2.5:0.5b",
+            "provider": "ollama"
+          },
+          "samples": [
+            {
+              "sampleId": "damaged",
+              "input": "Customer Jane Doe (jane@example.com) says order #A-1042 arrived damaged.",
+              "expected": {
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "order_id": "A-1042",
+                "issue": "arrived damaged"
+              },
+              "predictionText": "```json\n{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"order_id\": \"A-1042\",\n  \"issue\": \"Order arrived damaged\"\n}\n```",
+              "parsed": {
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "order_id": "A-1042",
+                "issue": "Order arrived damaged"
+              },
+              "promptTokens": 75,
+              "completionTokens": 47,
+              "latencyMs": 1852.707,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "missing",
+              "input": "Luis Ortega (luis.ortega@example.com) cannot find order #B-2201; the item is missing.",
+              "expected": {
+                "name": "Luis Ortega",
+                "email": "luis.ortega@example.com",
+                "order_id": "B-2201",
+                "issue": "missing item"
+              },
+              "predictionText": "{\n  \"name\": \"Luis Ortega\",\n  \"email\": \"luis.ortega@example.com\",\n  \"order_id\": \"B-2201\",\n  \"issue\": \"The item is missing\"\n}",
+              "parsed": {
+                "name": "Luis Ortega",
+                "email": "luis.ortega@example.com",
+                "order_id": "B-2201",
+                "issue": "The item is missing"
+              },
+              "promptTokens": 83,
+              "completionTokens": 49,
+              "latencyMs": 749.198,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "billing",
+              "input": "Priya Shah (priya.shah@example.com) was charged twice for order #C-118.",
+              "expected": {
+                "name": "Priya Shah",
+                "email": "priya.shah@example.com",
+                "order_id": "C-118",
+                "issue": "charged twice"
+              },
+              "predictionText": "{\n  \"name\": \"Priya Shah\",\n  \"email\": \"priya.shah@example.com\",\n  \"order_id\": \"C-118\",\n  \"issue\": \"Charge twice for order #C-118\"\n}",
+              "parsed": {
+                "name": "Priya Shah",
+                "email": "priya.shah@example.com",
+                "order_id": "C-118",
+                "issue": "Charge twice for order #C-118"
+              },
+              "promptTokens": 77,
+              "completionTokens": 52,
+              "latencyMs": 760.738,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "address",
+              "input": "Kenji Sato (kenji.sato@example.com) received order #D-9 at the wrong address.",
+              "expected": {
+                "name": "Kenji Sato",
+                "email": "kenji.sato@example.com",
+                "order_id": "D-9",
+                "issue": "wrong address"
+              },
+              "predictionText": "{\n  \"name\": \"Kenji Sato\",\n  \"email\": \"kenji.sato@example.com\",\n  \"order_id\": \"D-9\",\n  \"issue\": \"Order received at the wrong address\"\n}",
+              "parsed": {
+                "name": "Kenji Sato",
+                "email": "kenji.sato@example.com",
+                "order_id": "D-9",
+                "issue": "Order received at the wrong address"
+              },
+              "promptTokens": 77,
+              "completionTokens": 47,
+              "latencyMs": 719.78,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "late",
+              "input": "Amira Hassan (amira.hassan@example.com) is still waiting on order #E-440; delivery is late.",
+              "expected": {
+                "name": "Amira Hassan",
+                "email": "amira.hassan@example.com",
+                "order_id": "E-440",
+                "issue": "late delivery"
+              },
+              "predictionText": "{\n  \"name\": \"Amira Hassan\",\n  \"email\": \"amira.hassan@example.com\",\n  \"order_id\": \"E-440\",\n  \"issue\": \"delivery is late\"\n}",
+              "parsed": {
+                "name": "Amira Hassan",
+                "email": "amira.hassan@example.com",
+                "order_id": "E-440",
+                "issue": "delivery is late"
+              },
+              "promptTokens": 82,
+              "completionTokens": 46,
+              "latencyMs": 713.113,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "size",
+              "input": "Noah Williams (noah.williams@example.com) got the wrong size in order #F-17.",
+              "expected": {
+                "name": "Noah Williams",
+                "email": "noah.williams@example.com",
+                "order_id": "F-17",
+                "issue": "wrong size"
+              },
+              "predictionText": "{\n  \"name\": \"Noah Williams\",\n  \"email\": \"noah.williams@example.com\",\n  \"order_id\": \"F-17\",\n  \"issue\": \"got the wrong size\"\n}",
+              "parsed": {
+                "name": "Noah Williams",
+                "email": "noah.williams@example.com",
+                "order_id": "F-17",
+                "issue": "got the wrong size"
+              },
+              "promptTokens": 78,
+              "completionTokens": 46,
+              "latencyMs": 658.589,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "refund",
+              "input": "Sofia Rossi (sofia.rossi@example.com) has not received the refund for order #G-303.",
+              "expected": {
+                "name": "Sofia Rossi",
+                "email": "sofia.rossi@example.com",
+                "order_id": "G-303",
+                "issue": "refund not received"
+              },
+              "predictionText": "{\n  \"name\": \"Sofia Rossi\",\n  \"email\": \"sofia.rossi@example.com\",\n  \"order_id\": \"G-303\",\n  \"issue\": \"Refund not received\"\n}",
+              "parsed": {
+                "name": "Sofia Rossi",
+                "email": "sofia.rossi@example.com",
+                "order_id": "G-303",
+                "issue": "Refund not received"
+              },
+              "promptTokens": 82,
+              "completionTokens": 49,
+              "latencyMs": 681.488,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "cancel",
+              "input": "Jonah Kim (jonah.kim@example.com) asked to cancel order #H-88.",
+              "expected": {
+                "name": "Jonah Kim",
+                "email": "jonah.kim@example.com",
+                "order_id": "H-88",
+                "issue": "cancel order"
+              },
+              "predictionText": "{\n  \"name\": \"Jonah Kim\",\n  \"email\": \"jonah.kim@example.com\",\n  \"order_id\": \"H-88\",\n  \"issue\": \"cancel order\"\n}",
+              "parsed": {
+                "name": "Jonah Kim",
+                "email": "jonah.kim@example.com",
+                "order_id": "H-88",
+                "issue": "cancel order"
+              },
+              "promptTokens": 75,
+              "completionTokens": 43,
+              "latencyMs": 582.303,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            }
+          ],
+          "quantization": "Q4_K_M",
+          "parameterSize": "494.03M",
+          "family": "qwen2",
+          "digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+          "contextLength": 4096
+        },
+        {
+          "targetId": "smollm2-360m",
+          "provider": "ollama",
+          "model": "smollm2:360m",
+          "baseUrl": "http://127.0.0.1:11434/v1",
+          "summary": {
+            "n": 8,
+            "errors": 0,
+            "exactMatch": {
+              "passes": 0,
+              "scored": 8,
+              "rate": 0.0
+            },
+            "jsonSchema": {
+              "passes": 7,
+              "scored": 8,
+              "rate": 0.875
+            },
+            "judgeMean": null,
+            "judgeScored": 0,
+            "latencyMsMean": 1314.909,
+            "latencyMsP50": 1149.926,
+            "liveLatencyCount": 8,
+            "costUsdTotal": 0.0,
+            "costPer1kUsd": 0.0,
+            "costComplete": true,
+            "targetId": "smollm2-360m",
+            "model": "smollm2:360m",
+            "provider": "ollama"
+          },
+          "samples": [
+            {
+              "sampleId": "damaged",
+              "input": "Customer Jane Doe (jane@example.com) says order #A-1042 arrived damaged.",
+              "expected": {
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "order_id": "A-1042",
+                "issue": "arrived damaged"
+              },
+              "predictionText": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"order_id\": \"A-1042\",\n  \"issue\": \"order #A-1042 arrived damaged.\"",
+              "parsed": null,
+              "promptTokens": 87,
+              "completionTokens": 53,
+              "latencyMs": 2669.229,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "output is not valid JSON"
+                ],
+                "mismatchedFields": []
+              }
+            },
+            {
+              "sampleId": "missing",
+              "input": "Luis Ortega (luis.ortega@example.com) cannot find order #B-2201; the item is missing.",
+              "expected": {
+                "name": "Luis Ortega",
+                "email": "luis.ortega@example.com",
+                "order_id": "B-2201",
+                "issue": "missing item"
+              },
+              "predictionText": "{\n  \"name\": \"Luis Ortega\",\n  \"email\": \"luis.ortega@example.com\",\n  \"order_id\": \"B-2201\",\n  \"issue\": \"The item is missing.\"\n}",
+              "parsed": {
+                "name": "Luis Ortega",
+                "email": "luis.ortega@example.com",
+                "order_id": "B-2201",
+                "issue": "The item is missing."
+              },
+              "promptTokens": 95,
+              "completionTokens": 54,
+              "latencyMs": 1143.845,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "billing",
+              "input": "Priya Shah (priya.shah@example.com) was charged twice for order #C-118.",
+              "expected": {
+                "name": "Priya Shah",
+                "email": "priya.shah@example.com",
+                "order_id": "C-118",
+                "issue": "charged twice"
+              },
+              "predictionText": "{\n  \"name\": \"Priya Shah\",\n  \"email\": \"priya.shah@example.com\",\n  \"order_id\": \"C-118\",\n  \"issue\": \"order #C-118\"\n}",
+              "parsed": {
+                "name": "Priya Shah",
+                "email": "priya.shah@example.com",
+                "order_id": "C-118",
+                "issue": "order #C-118"
+              },
+              "promptTokens": 90,
+              "completionTokens": 55,
+              "latencyMs": 1156.006,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "address",
+              "input": "Kenji Sato (kenji.sato@example.com) received order #D-9 at the wrong address.",
+              "expected": {
+                "name": "Kenji Sato",
+                "email": "kenji.sato@example.com",
+                "order_id": "D-9",
+                "issue": "wrong address"
+              },
+              "predictionText": "{\n  \"name\": \"Kenji Sato\",\n  \"email\": \"kenji.sato@example.com\",\n  \"order_id\": \"D-9\",\n  \"issue\": \"wrong_address\"\n}",
+              "parsed": {
+                "name": "Kenji Sato",
+                "email": "kenji.sato@example.com",
+                "order_id": "D-9",
+                "issue": "wrong_address"
+              },
+              "promptTokens": 89,
+              "completionTokens": 49,
+              "latencyMs": 989.74,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "late",
+              "input": "Amira Hassan (amira.hassan@example.com) is still waiting on order #E-440; delivery is late.",
+              "expected": {
+                "name": "Amira Hassan",
+                "email": "amira.hassan@example.com",
+                "order_id": "E-440",
+                "issue": "late delivery"
+              },
+              "predictionText": "{\n  \"name\": \"Amira Hassan\",\n  \"email\": \"amira.hassan@example.com\",\n  \"order_id\": \"E-440\",\n  \"issue\": \"delivery is late\"\n}",
+              "parsed": {
+                "name": "Amira Hassan",
+                "email": "amira.hassan@example.com",
+                "order_id": "E-440",
+                "issue": "delivery is late"
+              },
+              "promptTokens": 93,
+              "completionTokens": 50,
+              "latencyMs": 1053.842,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "size",
+              "input": "Noah Williams (noah.williams@example.com) got the wrong size in order #F-17.",
+              "expected": {
+                "name": "Noah Williams",
+                "email": "noah.williams@example.com",
+                "order_id": "F-17",
+                "issue": "wrong size"
+              },
+              "predictionText": "{\n  \"name\": \"Noah Williams\",\n  \"email\": \"noah.williams@example.com\",\n  \"order_id\": \"F-17\",\n  \"issue\": \"The order was incorrectly sized. Please contact support to correct the issue.\"\n}",
+              "parsed": {
+                "name": "Noah Williams",
+                "email": "noah.williams@example.com",
+                "order_id": "F-17",
+                "issue": "The order was incorrectly sized. Please contact support to correct the issue."
+              },
+              "promptTokens": 90,
+              "completionTokens": 60,
+              "latencyMs": 1315.355,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "refund",
+              "input": "Sofia Rossi (sofia.rossi@example.com) has not received the refund for order #G-303.",
+              "expected": {
+                "name": "Sofia Rossi",
+                "email": "sofia.rossi@example.com",
+                "order_id": "G-303",
+                "issue": "refund not received"
+              },
+              "predictionText": "{\n  \"name\": \"Sofia Rossi\",\n  \"email\": \"sofia.rossi@example.com\",\n  \"order_id\": \"G-303\",\n  \"issue\": \"order #G-303\"\n}",
+              "parsed": {
+                "name": "Sofia Rossi",
+                "email": "sofia.rossi@example.com",
+                "order_id": "G-303",
+                "issue": "order #G-303"
+              },
+              "promptTokens": 94,
+              "completionTokens": 57,
+              "latencyMs": 1176.24,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "cancel",
+              "input": "Jonah Kim (jonah.kim@example.com) asked to cancel order #H-88.",
+              "expected": {
+                "name": "Jonah Kim",
+                "email": "jonah.kim@example.com",
+                "order_id": "H-88",
+                "issue": "cancel order"
+              },
+              "predictionText": "{\n  \"name\": \"Jonah Kim\",\n  \"email\": \"jonah.kim@example.com\",\n  \"order_id\": \"H-88\",\n  \"issue\": \"cancelled\"\n}",
+              "parsed": {
+                "name": "Jonah Kim",
+                "email": "jonah.kim@example.com",
+                "order_id": "H-88",
+                "issue": "cancelled"
+              },
+              "promptTokens": 88,
+              "completionTokens": 49,
+              "latencyMs": 1015.017,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            }
+          ],
+          "quantization": "F16",
+          "parameterSize": "361.82M",
+          "family": "llama",
+          "digest": "297281b699fc51376006233ca400cd664c4f7b80ed88a47ef084f1e4b089803b",
+          "contextLength": 4096
+        },
+        {
+          "targetId": "llama3.2-1b",
+          "provider": "ollama",
+          "model": "llama3.2:1b",
+          "baseUrl": "http://127.0.0.1:11434/v1",
+          "summary": {
+            "n": 8,
+            "errors": 0,
+            "exactMatch": {
+              "passes": 3,
+              "scored": 8,
+              "rate": 0.375
+            },
+            "jsonSchema": {
+              "passes": 8,
+              "scored": 8,
+              "rate": 1.0
+            },
+            "judgeMean": null,
+            "judgeScored": 0,
+            "latencyMsMean": 1432.276,
+            "latencyMsP50": 1122.961,
+            "liveLatencyCount": 8,
+            "costUsdTotal": 0.0,
+            "costPer1kUsd": 0.0,
+            "costComplete": true,
+            "targetId": "llama3.2-1b",
+            "model": "llama3.2:1b",
+            "provider": "ollama"
+          },
+          "samples": [
+            {
+              "sampleId": "damaged",
+              "input": "Customer Jane Doe (jane@example.com) says order #A-1042 arrived damaged.",
+              "expected": {
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "order_id": "A-1042",
+                "issue": "arrived damaged"
+              },
+              "predictionText": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"order_id\": \"A-1042\",\n  \"issue\": \"damaged\"\n}",
+              "parsed": {
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "order_id": "A-1042",
+                "issue": "damaged"
+              },
+              "promptTokens": 85,
+              "completionTokens": 40,
+              "latencyMs": 3733.178,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "missing",
+              "input": "Luis Ortega (luis.ortega@example.com) cannot find order #B-2201; the item is missing.",
+              "expected": {
+                "name": "Luis Ortega",
+                "email": "luis.ortega@example.com",
+                "order_id": "B-2201",
+                "issue": "missing item"
+              },
+              "predictionText": "{\n  \"name\": \"Luis Ortega\",\n  \"email\": \"luis.ortega@example.com\",\n  \"order_id\": \"B-2201\",\n  \"issue\": \"The item is missing.\"\n}",
+              "parsed": {
+                "name": "Luis Ortega",
+                "email": "luis.ortega@example.com",
+                "order_id": "B-2201",
+                "issue": "The item is missing."
+              },
+              "promptTokens": 93,
+              "completionTokens": 47,
+              "latencyMs": 1166.235,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "billing",
+              "input": "Priya Shah (priya.shah@example.com) was charged twice for order #C-118.",
+              "expected": {
+                "name": "Priya Shah",
+                "email": "priya.shah@example.com",
+                "order_id": "C-118",
+                "issue": "charged twice"
+              },
+              "predictionText": "{\n  \"name\": \"Priya Shah\",\n  \"email\": \"priya.shah@example.com\",\n  \"order_id\": \"C-118\",\n  \"issue\": \"charged twice\"\n}",
+              "parsed": {
+                "name": "Priya Shah",
+                "email": "priya.shah@example.com",
+                "order_id": "C-118",
+                "issue": "charged twice"
+              },
+              "promptTokens": 87,
+              "completionTokens": 42,
+              "latencyMs": 1034.256,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            },
+            {
+              "sampleId": "address",
+              "input": "Kenji Sato (kenji.sato@example.com) received order #D-9 at the wrong address.",
+              "expected": {
+                "name": "Kenji Sato",
+                "email": "kenji.sato@example.com",
+                "order_id": "D-9",
+                "issue": "wrong address"
+              },
+              "predictionText": "{\n  \"name\": \"Kenji Sato\",\n  \"email\": \"kenji.sato@example.com\",\n  \"order_id\": \"D-9\",\n  \"issue\": \"received order #D-9 at the wrong address.\"\n}",
+              "parsed": {
+                "name": "Kenji Sato",
+                "email": "kenji.sato@example.com",
+                "order_id": "D-9",
+                "issue": "received order #D-9 at the wrong address."
+              },
+              "promptTokens": 89,
+              "completionTokens": 51,
+              "latencyMs": 1223.133,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "late",
+              "input": "Amira Hassan (amira.hassan@example.com) is still waiting on order #E-440; delivery is late.",
+              "expected": {
+                "name": "Amira Hassan",
+                "email": "amira.hassan@example.com",
+                "order_id": "E-440",
+                "issue": "late delivery"
+              },
+              "predictionText": "{\n  \"name\": \"Amira Hassan\",\n  \"email\": \"amira.hassan@example.com\",\n  \"order_id\": \"E-440\",\n  \"issue\": \"delivery is late\"\n}",
+              "parsed": {
+                "name": "Amira Hassan",
+                "email": "amira.hassan@example.com",
+                "order_id": "E-440",
+                "issue": "delivery is late"
+              },
+              "promptTokens": 92,
+              "completionTokens": 44,
+              "latencyMs": 1081.463,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "size",
+              "input": "Noah Williams (noah.williams@example.com) got the wrong size in order #F-17.",
+              "expected": {
+                "name": "Noah Williams",
+                "email": "noah.williams@example.com",
+                "order_id": "F-17",
+                "issue": "wrong size"
+              },
+              "predictionText": "{\n  \"name\": \"Noah Williams\",\n  \"email\": \"noah.williams@example.com\",\n  \"order_id\": \"F-17\",\n  \"issue\": \"wrong size\"\n}",
+              "parsed": {
+                "name": "Noah Williams",
+                "email": "noah.williams@example.com",
+                "order_id": "F-17",
+                "issue": "wrong size"
+              },
+              "promptTokens": 89,
+              "completionTokens": 43,
+              "latencyMs": 1042.873,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            },
+            {
+              "sampleId": "refund",
+              "input": "Sofia Rossi (sofia.rossi@example.com) has not received the refund for order #G-303.",
+              "expected": {
+                "name": "Sofia Rossi",
+                "email": "sofia.rossi@example.com",
+                "order_id": "G-303",
+                "issue": "refund not received"
+              },
+              "predictionText": "{\n  \"name\": \"Sofia Rossi\",\n  \"email\": \"sofia.rossi@example.com\",\n  \"order_id\": \"G-303\",\n  \"issue\": \"has not received the refund\"\n}",
+              "parsed": {
+                "name": "Sofia Rossi",
+                "email": "sofia.rossi@example.com",
+                "order_id": "G-303",
+                "issue": "has not received the refund"
+              },
+              "promptTokens": 92,
+              "completionTokens": 48,
+              "latencyMs": 1164.46,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "issue"
+                ]
+              }
+            },
+            {
+              "sampleId": "cancel",
+              "input": "Jonah Kim (jonah.kim@example.com) asked to cancel order #H-88.",
+              "expected": {
+                "name": "Jonah Kim",
+                "email": "jonah.kim@example.com",
+                "order_id": "H-88",
+                "issue": "cancel order"
+              },
+              "predictionText": "{\n  \"name\": \"Jonah Kim\",\n  \"email\": \"jonah.kim@example.com\",\n  \"order_id\": \"H-88\",\n  \"issue\": \"cancel order\"\n}",
+              "parsed": {
+                "name": "Jonah Kim",
+                "email": "jonah.kim@example.com",
+                "order_id": "H-88",
+                "issue": "cancel order"
+              },
+              "promptTokens": 86,
+              "completionTokens": 42,
+              "latencyMs": 1012.607,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            }
+          ],
+          "quantization": "Q8_0",
+          "parameterSize": "1.2B",
+          "family": "llama",
+          "digest": "baf6a787fdffd633537aa2eb51cfd54cb93ff08e28040095462bb63daf552878",
+          "contextLength": 4096
+        }
+      ]
+    },
+    {
+      "id": "5bb0f366deed4974a8864ec6c33e224c",
+      "taskName": "classification",
+      "taskVersion": "1",
+      "description": "Classify a short support ticket as billing, shipping, product, or account. Predictions must be one JSON object with a label field.",
+      "createdAt": "2026-10-16T05:09:59.639367+00:00",
+      "label": "measured",
+      "metrics": [
+        "exact_match",
+        "json_schema",
+        "llm_judge",
+        "latency",
+        "cost"
+      ],
+      "pricing": {
+        "qwen2.5:0.5b": {
+          "inputPerMillion": 0.0,
+          "outputPerMillion": 0.0,
+          "source": "local Ollama; no provider bill",
+          "asOf": "2026-10-16"
+        },
+        "smollm2:360m": {
+          "inputPerMillion": 0.0,
+          "outputPerMillion": 0.0,
+          "source": "local Ollama; no provider bill",
+          "asOf": "2026-10-16"
+        },
+        "llama3.2:1b": {
+          "inputPerMillion": 0.0,
+          "outputPerMillion": 0.0,
+          "source": "local Ollama; no provider bill",
+          "asOf": "2026-10-16"
+        }
+      },
+      "targets": [
+        {
+          "targetId": "qwen2.5-0.5b",
+          "provider": "ollama",
+          "model": "qwen2.5:0.5b",
+          "baseUrl": "http://127.0.0.1:11434/v1",
+          "summary": {
+            "n": 8,
+            "errors": 0,
+            "exactMatch": {
+              "passes": 4,
+              "scored": 8,
+              "rate": 0.5
+            },
+            "jsonSchema": {
+              "passes": 8,
+              "scored": 8,
+              "rate": 1.0
+            },
+            "judgeMean": null,
+            "judgeScored": 0,
+            "latencyMsMean": 312.031,
+            "latencyMsP50": 170.027,
+            "liveLatencyCount": 8,
+            "costUsdTotal": 0.0,
+            "costPer1kUsd": 0.0,
+            "costComplete": true,
+            "targetId": "qwen2.5-0.5b",
+            "model": "qwen2.5:0.5b",
+            "provider": "ollama"
+          },
+          "samples": [
+            {
+              "sampleId": "double-charge",
+              "input": "I was charged twice on my card for the same order.",
+              "expected": {
+                "label": "billing"
+              },
+              "predictionText": "{\n  \"label\": \"account\"\n}",
+              "parsed": {
+                "label": "account"
+              },
+              "promptTokens": 61,
+              "completionTokens": 10,
+              "latencyMs": 1324.719,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            },
+            {
+              "sampleId": "refund-status",
+              "input": "Where is the refund you said was sent last week?",
+              "expected": {
+                "label": "billing"
+              },
+              "predictionText": "{\n  \"label\": \"account\"\n}",
+              "parsed": {
+                "label": "account"
+              },
+              "promptTokens": 60,
+              "completionTokens": 10,
+              "latencyMs": 177.771,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            },
+            {
+              "sampleId": "not-delivered",
+              "input": "The tracking page says delivered but the package is not here.",
+              "expected": {
+                "label": "shipping"
+              },
+              "predictionText": "{\n  \"label\": \"product\"\n}",
+              "parsed": {
+                "label": "product"
+              },
+              "promptTokens": 61,
+              "completionTokens": 10,
+              "latencyMs": 178.731,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            },
+            {
+              "sampleId": "late-ship",
+              "input": "My order still has not shipped and the estimate was yesterday.",
+              "expected": {
+                "label": "shipping"
+              },
+              "predictionText": "{\n  \"label\": \"account\"\n}",
+              "parsed": {
+                "label": "account"
+              },
+              "promptTokens": 61,
+              "completionTokens": 10,
+              "latencyMs": 172.211,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            },
+            {
+              "sampleId": "broken-unit",
+              "input": "The blender I received does not turn on.",
+              "expected": {
+                "label": "product"
+              },
+              "predictionText": "{\n  \"label\": \"product\"\n}",
+              "parsed": {
+                "label": "product"
+              },
+              "promptTokens": 58,
+              "completionTokens": 10,
+              "latencyMs": 165.791,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            },
+            {
+              "sampleId": "wrong-color",
+              "input": "You sent a blue jacket and I ordered the black one.",
+              "expected": {
+                "label": "product"
+              },
+              "predictionText": "{\n  \"label\": \"product\"\n}",
+              "parsed": {
+                "label": "product"
+              },
+              "promptTokens": 61,
+              "completionTokens": 10,
+              "latencyMs": 167.843,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            },
+            {
+              "sampleId": "cannot-login",
+              "input": "I cannot sign in after the password reset email.",
+              "expected": {
+                "label": "account"
+              },
+              "predictionText": "{\n  \"label\": \"account\"\n}",
+              "parsed": {
+                "label": "account"
+              },
+              "promptTokens": 59,
+              "completionTokens": 10,
+              "latencyMs": 156.373,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            },
+            {
+              "sampleId": "close-account",
+              "input": "Please close my account and delete the profile.",
+              "expected": {
+                "label": "account"
+              },
+              "predictionText": "{\n  \"label\": \"account\"\n}",
+              "parsed": {
+                "label": "account"
+              },
+              "promptTokens": 58,
+              "completionTokens": 10,
+              "latencyMs": 152.805,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            }
+          ],
+          "quantization": "Q4_K_M",
+          "parameterSize": "494.03M",
+          "family": "qwen2",
+          "digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+          "contextLength": 4096
+        },
+        {
+          "targetId": "smollm2-360m",
+          "provider": "ollama",
+          "model": "smollm2:360m",
+          "baseUrl": "http://127.0.0.1:11434/v1",
+          "summary": {
+            "n": 8,
+            "errors": 0,
+            "exactMatch": {
+              "passes": 0,
+              "scored": 8,
+              "rate": 0.0
+            },
+            "jsonSchema": {
+              "passes": 0,
+              "scored": 8,
+              "rate": 0.0
+            },
+            "judgeMean": null,
+            "judgeScored": 0,
+            "latencyMsMean": 874.952,
+            "latencyMsP50": 677.082,
+            "liveLatencyCount": 8,
+            "costUsdTotal": 0.0,
+            "costPer1kUsd": 0.0,
+            "costComplete": true,
+            "targetId": "smollm2-360m",
+            "model": "smollm2:360m",
+            "provider": "ollama"
+          },
+          "samples": [
+            {
+              "sampleId": "double-charge",
+              "input": "I was charged twice on my card for the same order.",
+              "expected": {
+                "label": "billing"
+              },
+              "predictionText": "{\n  \"label\": \"billing\",\n  \"status\": \"pending\",\n  \"message\": \"You were charged twice on your card for the same order. Please try again later.\"\n}",
+              "parsed": {
+                "label": "billing",
+                "status": "pending",
+                "message": "You were charged twice on your card for the same order. Please try again later."
+              },
+              "promptTokens": 71,
+              "completionTokens": 41,
+              "latencyMs": 1903.94,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "status: Extra inputs are not permitted",
+                  "message: Extra inputs are not permitted"
+                ],
+                "mismatchedFields": [
+                  "status",
+                  "message"
+                ]
+              }
+            },
+            {
+              "sampleId": "refund-status",
+              "input": "Where is the refund you said was sent last week?",
+              "expected": {
+                "label": "billing"
+              },
+              "predictionText": "{\n  \"label\": \"billing\",\n  \"status\": \"pending\",\n  \"message\": \"Refund request for refund was not sent last week. Please check your inbox for the confirmation.\"\n}",
+              "parsed": {
+                "label": "billing",
+                "status": "pending",
+                "message": "Refund request for refund was not sent last week. Please check your inbox for the confirmation."
+              },
+              "promptTokens": 70,
+              "completionTokens": 43,
+              "latencyMs": 859.386,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "status: Extra inputs are not permitted",
+                  "message: Extra inputs are not permitted"
+                ],
+                "mismatchedFields": [
+                  "status",
+                  "message"
+                ]
+              }
+            },
+            {
+              "sampleId": "not-delivered",
+              "input": "The tracking page says delivered but the package is not here.",
+              "expected": {
+                "label": "shipping"
+              },
+              "predictionText": "{\n  \"label\": \"billing\",\n  \"message\": \"The tracking page says delivered but the package is not here.\"\n}",
+              "parsed": {
+                "label": "billing",
+                "message": "The tracking page says delivered but the package is not here."
+              },
+              "promptTokens": 71,
+              "completionTokens": 29,
+              "latencyMs": 603.713,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "message: Extra inputs are not permitted"
+                ],
+                "mismatchedFields": [
+                  "label",
+                  "message"
+                ]
+              }
+            },
+            {
+              "sampleId": "late-ship",
+              "input": "My order still has not shipped and the estimate was yesterday.",
+              "expected": {
+                "label": "shipping"
+              },
+              "predictionText": "{\n  \"label\": \"billing\",\n  \"status\": \"pending\",\n  \"message\": \"My order still has not shipped and the estimate was yesterday.\",\n  \"status_description\": \"Pending\",\n  \"status_reason\": \"Pending\",\n  \"status_type\": \"pending\"\n}",
+              "parsed": {
+                "label": "billing",
+                "status": "pending",
+                "message": "My order still has not shipped and the estimate was yesterday.",
+                "status_description": "Pending",
+                "status_reason": "Pending",
+                "status_type": "pending"
+              },
+              "promptTokens": 71,
+              "completionTokens": 65,
+              "latencyMs": 1348.778,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "status: Extra inputs are not permitted",
+                  "message: Extra inputs are not permitted",
+                  "status_description: Extra inputs are not permitted",
+                  "status_reason: Extra inputs are not permitted",
+                  "status_type: Extra inputs are not permitted"
+                ],
+                "mismatchedFields": [
+                  "label",
+                  "status",
+                  "message",
+                  "status_description",
+                  "status_reason",
+                  "status_type"
+                ]
+              }
+            },
+            {
+              "sampleId": "broken-unit",
+              "input": "The blender I received does not turn on.",
+              "expected": {
+                "label": "product"
+              },
+              "predictionText": "{\n  \"label\": \"billing\",\n  \"status\": \"failed\",\n  \"message\": \"The blender I received does not turn on.\"\n}",
+              "parsed": {
+                "label": "billing",
+                "status": "failed",
+                "message": "The blender I received does not turn on."
+              },
+              "promptTokens": 68,
+              "completionTokens": 33,
+              "latencyMs": 677.128,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "status: Extra inputs are not permitted",
+                  "message: Extra inputs are not permitted"
+                ],
+                "mismatchedFields": [
+                  "label",
+                  "status",
+                  "message"
+                ]
+              }
+            },
+            {
+              "sampleId": "wrong-color",
+              "input": "You sent a blue jacket and I ordered the black one.",
+              "expected": {
+                "label": "product"
+              },
+              "predictionText": "Ticket:\nYou sent a blue jacket and I ordered the black one.",
+              "parsed": null,
+              "promptTokens": 71,
+              "completionTokens": 17,
+              "latencyMs": 388.89,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "output is not valid JSON"
+                ],
+                "mismatchedFields": []
+              }
+            },
+            {
+              "sampleId": "cannot-login",
+              "input": "I cannot sign in after the password reset email.",
+              "expected": {
+                "label": "account"
+              },
+              "predictionText": "{\n  \"label\": \"billing\",\n  \"status\": \"failed\",\n  \"message\": \"Failed to sign in after password reset email\"\n}",
+              "parsed": {
+                "label": "billing",
+                "status": "failed",
+                "message": "Failed to sign in after password reset email"
+              },
+              "promptTokens": 69,
+              "completionTokens": 33,
+              "latencyMs": 677.036,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "status: Extra inputs are not permitted",
+                  "message: Extra inputs are not permitted"
+                ],
+                "mismatchedFields": [
+                  "label",
+                  "status",
+                  "message"
+                ]
+              }
+            },
+            {
+              "sampleId": "close-account",
+              "input": "Please close my account and delete the profile.",
+              "expected": {
+                "label": "account"
+              },
+              "predictionText": "{\n  \"label\": \"billing\",\n  \"message\": \"Please close your account and delete your profile.\"\n}",
+              "parsed": {
+                "label": "billing",
+                "message": "Please close your account and delete your profile."
+              },
+              "promptTokens": 68,
+              "completionTokens": 26,
+              "latencyMs": 540.741,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "message: Extra inputs are not permitted"
+                ],
+                "mismatchedFields": [
+                  "label",
+                  "message"
+                ]
+              }
+            }
+          ],
+          "quantization": "F16",
+          "parameterSize": "361.82M",
+          "family": "llama",
+          "digest": "297281b699fc51376006233ca400cd664c4f7b80ed88a47ef084f1e4b089803b",
+          "contextLength": 4096
+        },
+        {
+          "targetId": "llama3.2-1b",
+          "provider": "ollama",
+          "model": "llama3.2:1b",
+          "baseUrl": "http://127.0.0.1:11434/v1",
+          "summary": {
+            "n": 8,
+            "errors": 0,
+            "exactMatch": {
+              "passes": 2,
+              "scored": 8,
+              "rate": 0.25
+            },
+            "jsonSchema": {
+              "passes": 4,
+              "scored": 8,
+              "rate": 0.5
+            },
+            "judgeMean": null,
+            "judgeScored": 0,
+            "latencyMsMean": 690.03,
+            "latencyMsP50": 432.381,
+            "liveLatencyCount": 8,
+            "costUsdTotal": 0.0,
+            "costPer1kUsd": 0.0,
+            "costComplete": true,
+            "targetId": "llama3.2-1b",
+            "model": "llama3.2:1b",
+            "provider": "ollama"
+          },
+          "samples": [
+            {
+              "sampleId": "double-charge",
+              "input": "I was charged twice on my card for the same order.",
+              "expected": {
+                "label": "billing"
+              },
+              "predictionText": "{\n  \"label\": \"billing\"\n}",
+              "parsed": {
+                "label": "billing"
+              },
+              "promptTokens": 73,
+              "completionTokens": 10,
+              "latencyMs": 2786.443,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            },
+            {
+              "sampleId": "refund-status",
+              "input": "Where is the refund you said was sent last week?",
+              "expected": {
+                "label": "billing"
+              },
+              "predictionText": "{\n  \"label\": \"billing\"\n}",
+              "parsed": {
+                "label": "billing"
+              },
+              "promptTokens": 72,
+              "completionTokens": 10,
+              "latencyMs": 274.958,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 1.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": []
+              }
+            },
+            {
+              "sampleId": "not-delivered",
+              "input": "The tracking page says delivered but the package is not here.",
+              "expected": {
+                "label": "shipping"
+              },
+              "predictionText": "{\n  \"label\": \"billing\"\n}",
+              "parsed": {
+                "label": "billing"
+              },
+              "promptTokens": 73,
+              "completionTokens": 10,
+              "latencyMs": 294.124,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            },
+            {
+              "sampleId": "late-ship",
+              "input": "My order still has not shipped and the estimate was yesterday.",
+              "expected": {
+                "label": "shipping"
+              },
+              "predictionText": "{\n  \"label\": \"My order still has not shipped and the estimate was yesterday.\"\n}",
+              "parsed": {
+                "label": "My order still has not shipped and the estimate was yesterday."
+              },
+              "promptTokens": 73,
+              "completionTokens": 20,
+              "latencyMs": 519.892,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "label: Input should be 'billing', 'shipping', 'product' or 'account'"
+                ],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            },
+            {
+              "sampleId": "broken-unit",
+              "input": "The blender I received does not turn on.",
+              "expected": {
+                "label": "product"
+              },
+              "predictionText": "{\n  \"label\": \"The blender I received does not turn on.\"\n}",
+              "parsed": {
+                "label": "The blender I received does not turn on."
+              },
+              "promptTokens": 70,
+              "completionTokens": 17,
+              "latencyMs": 435.121,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "label: Input should be 'billing', 'shipping', 'product' or 'account'"
+                ],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            },
+            {
+              "sampleId": "wrong-color",
+              "input": "You sent a blue jacket and I ordered the black one.",
+              "expected": {
+                "label": "product"
+              },
+              "predictionText": "{\n  \"label\": \"You sent a blue jacket and I ordered the black one.\"\n}",
+              "parsed": {
+                "label": "You sent a blue jacket and I ordered the black one."
+              },
+              "promptTokens": 73,
+              "completionTokens": 20,
+              "latencyMs": 511.086,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "label: Input should be 'billing', 'shipping', 'product' or 'account'"
+                ],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            },
+            {
+              "sampleId": "cannot-login",
+              "input": "I cannot sign in after the password reset email.",
+              "expected": {
+                "label": "account"
+              },
+              "predictionText": "{\n  \"label\": \"I cannot sign in after password reset email\"\n}",
+              "parsed": {
+                "label": "I cannot sign in after password reset email"
+              },
+              "promptTokens": 71,
+              "completionTokens": 17,
+              "latencyMs": 429.641,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 0.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [
+                  "label: Input should be 'billing', 'shipping', 'product' or 'account'"
+                ],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            },
+            {
+              "sampleId": "close-account",
+              "input": "Please close my account and delete the profile.",
+              "expected": {
+                "label": "account"
+              },
+              "predictionText": "{\n  \"label\": \"billing\"\n}",
+              "parsed": {
+                "label": "billing"
+              },
+              "promptTokens": 70,
+              "completionTokens": 10,
+              "latencyMs": 268.976,
+              "costUsd": 0.0,
+              "cached": false,
+              "attempts": 1,
+              "error": null,
+              "metrics": {
+                "exactMatch": 0.0,
+                "jsonSchema": 1.0,
+                "judge": null,
+                "judgeReason": null,
+                "judgeError": null,
+                "schemaErrors": [],
+                "mismatchedFields": [
+                  "label"
+                ]
+              }
+            }
+          ],
+          "quantization": "Q8_0",
+          "parameterSize": "1.2B",
+          "family": "llama",
+          "digest": "baf6a787fdffd633537aa2eb51cfd54cb93ff08e28040095462bb63daf552878",
+          "contextLength": 4096
+        }
+      ]
+    }
+  ]
+}
